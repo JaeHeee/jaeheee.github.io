@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jaeheee_github_io/responsive.dart';
 
 import '../constants.dart';
-import 'Side_menu/side_menu.dart';
+import 'package:jaeheee_github_io/screens/Side_menu/side_menu.dart';
 import 'main_screen/main_screen.dart';
 
 class HomePage extends StatelessWidget {

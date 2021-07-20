@@ -18,6 +18,7 @@ class SideMenu extends StatelessWidget {
         flex: 2,
         child: Drawer(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _buildProfile(context),
               _buildCV(context),
@@ -63,44 +64,49 @@ class SideMenu extends StatelessWidget {
             color: ConstColors.lightBlack,
             borderRadius: BorderRadius.circular(4.0),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                onPressed: () => _launchURL('https://github.com/JaeHeee'),
-                icon: SvgPicture.asset('assets/icons/github.svg'),
-              ),
-              IconButton(
-                onPressed: () => _launchURL(
-                    'https://www.linkedin.com/in/jaehee-kim-18a298210/'),
-                icon: SvgPicture.asset('assets/icons/linkedin.svg'),
-              ),
-              IconButton(
-                onPressed: () {
-                  final emailLaunchUri = Uri(
-                      scheme: 'mailto',
-                      path: 'jaehee.k.dev@gmail.com',
-                      query: encodeQueryParameters(
-                          <String, String>{'subject': ''}));
-                  _launchURL(emailLaunchUri.toString());
-                },
-                icon: const Icon(Icons.mail),
-                color: ConstColors.grey,
-              ),
-              IconButton(
-                iconSize: 48,
-                onPressed: () => _launchURL('https://velog.io/@kjha2142'),
-                icon: Text(
-                  'Velog',
-                  style: Theme.of(context).textTheme.button.copyWith(
-                        color: ConstColors.grey,
-                      ),
-                ),
-              )
-            ],
-          ),
+          child: _buildIconButtons(context),
         ),
         const SizedBox(height: ConstScreen.paddingSize),
+      ],
+    );
+  }
+
+  Row _buildIconButtons(BuildContext context) {
+    return Row(
+      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        const Spacer(),
+        IconButton(
+          onPressed: () => _launchURL('https://github.com/JaeHeee'),
+          icon: SvgPicture.asset('assets/icons/github.svg'),
+        ),
+        IconButton(
+          onPressed: () =>
+              _launchURL('https://www.linkedin.com/in/jaehee-kim-18a298210/'),
+          icon: SvgPicture.asset('assets/icons/linkedin.svg'),
+        ),
+        IconButton(
+          onPressed: () {
+            final emailLaunchUri = Uri(
+                scheme: 'mailto',
+                path: 'jaehee.k.dev@gmail.com',
+                query: encodeQueryParameters(<String, String>{'subject': ''}));
+            _launchURL(emailLaunchUri.toString());
+          },
+          icon: const Icon(Icons.mail),
+          color: ConstColors.grey,
+        ),
+        IconButton(
+          iconSize: 48,
+          onPressed: () => _launchURL('https://velog.io/@kjha2142'),
+          icon: Text(
+            'Velog',
+            style: Theme.of(context).textTheme.button.copyWith(
+                  color: ConstColors.grey,
+                ),
+          ),
+        ),
+        const Spacer(),
       ],
     );
   }
@@ -208,41 +214,40 @@ class SideMenu extends StatelessWidget {
   Padding _buildProfile(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(ConstScreen.paddingSize),
-      child: AspectRatio(
-        aspectRatio: 1.5,
-        child: Container(
-          decoration: BoxDecoration(
-            color: ConstColors.lightBlack,
-            borderRadius: BorderRadius.circular(4.0),
-          ),
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(ConstScreen.paddingSize),
-                child: CircleAvatar(
-                  radius: 50,
-                  // backgroundImage: AssetImage(
-                  //   profile['image'],
-                  // ),
-                ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: ConstColors.lightBlack,
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        padding: const EdgeInsets.all(ConstScreen.paddingSize),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(ConstScreen.paddingSize),
+              child: CircleAvatar(
+                radius: 50,
+                // backgroundImage: AssetImage(
+                //   profile['image'],
+                // ),
               ),
-              Text(
-                profile['name'],
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-              Text(
-                profile['position'],
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Text(
-                profile['bio'],
-                style: Theme.of(context).textTheme.caption,
-              ),
-            ],
-          ),
+            ),
+            Text(
+              profile['name'],
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+            Text(
+              profile['position'],
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Text(
+              profile['bio'],
+              style: Theme.of(context).textTheme.caption,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );

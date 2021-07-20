@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jaeheee_github_io/responsive.dart';
 
 import '../constants.dart';
 import 'Side_menu/side_menu.dart';
+import 'main_screen/main_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -13,13 +15,8 @@ class HomePage extends StatelessWidget {
         constraints: const BoxConstraints(maxHeight: ConstScreen.maxWidth),
         child: Row(
           children: [
-            const SideMenu(),
-            Expanded(
-              flex: 7,
-              child: Container(
-                color: Colors.amber,
-              ),
-            )
+            if (Responsive.isDesktop(context)) const SideMenu(),
+            const MainScreen()
           ],
         ),
       ),

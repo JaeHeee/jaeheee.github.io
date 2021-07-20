@@ -27,6 +27,7 @@ class ProfileListGenerator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: List.generate((subject.length) * 2 - 1, (index) {
         if (index % 2 == 1) {
           return const SizedBox(
@@ -34,18 +35,21 @@ class ProfileListGenerator extends StatelessWidget {
           );
         } else {
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                direction: Axis.horizontal,
                 children: [
                   Text(
                     subject[index ~/ 2]['organization'],
                     style: Theme.of(context).textTheme.subtitle2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     subject[index ~/ 2]['date'],
                     style: Theme.of(context).textTheme.overline,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

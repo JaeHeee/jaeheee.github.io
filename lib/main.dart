@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                 overline: const TextStyle(color: ConstColors.white),
               ),
         ),
-        home: const HomePage(),
+        home: HomePage(),
       ),
     );
   }

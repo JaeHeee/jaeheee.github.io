@@ -5,10 +5,12 @@ import '../../constants.dart';
 class TextNavButton extends StatelessWidget {
   const TextNavButton({
     @required this.text,
+    @required this.globalKey,
     Key key,
   }) : super(key: key);
 
   final String text;
+  final GlobalKey<State<StatefulWidget>> globalKey;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,13 @@ class TextNavButton extends StatelessWidget {
           ),
           overlayColor: MaterialStateProperty.all(Colors.transparent),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Scrollable.ensureVisible(
+            globalKey.currentContext,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeInOut,
+          );
+        },
         child: Text(
           text,
         ),

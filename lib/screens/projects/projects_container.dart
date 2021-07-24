@@ -8,10 +8,13 @@ class ProjectsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const ContentTitle(
-        title: 'PROJECTS',
-        color: ConstColors.blue,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: ConstScreen.largePadding),
+      child: Container(
+        child: const ContentTitle(
+          title: 'PROJECTS',
+          color: ConstColors.blue,
+        ),
       ),
     );
   }

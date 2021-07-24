@@ -7,20 +7,25 @@ import '../unit/content_title.dart';
 import '../unit/text_buttons.dart';
 
 class ContactContainer extends StatelessWidget {
-  const ContactContainer({Key key}) : super(key: key);
+  const ContactContainer({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const ContentTitle(
-          title: 'CONTACT',
-          color: ConstColors.lightBlue,
-        ),
-        _buildContactContents(context),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: ConstScreen.largePadding),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const ContentTitle(
+            title: 'CONTACT',
+            color: ConstColors.lightBlue,
+          ),
+          _buildContactContents(context),
+        ],
+      ),
     );
   }
 

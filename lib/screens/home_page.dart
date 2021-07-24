@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
   Padding get _buildBottomCopyright => Padding(
         padding: EdgeInsets.symmetric(vertical: ConstScreen.largePadding),
         child: const Text(
-          'Copyright © 2021 | All rights reserved. | JAEHEE KIM',
+          'Copyright © 2021 JAEHEE KIM All rights reserved.',
           textAlign: TextAlign.center,
         ),
       );

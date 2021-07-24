@@ -18,5 +18,5 @@ class ConstScreen {
   static double largePadding = ScreenUtil().setWidth(32.0);
   static double padding = ScreenUtil().setWidth(16.0);
   static double smallpadding = ScreenUtil().setWidth(8.0);
-  static const duration = Duration(seconds: 1);
+  static const duration = Duration(milliseconds: 700);
 }

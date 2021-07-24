@@ -34,7 +34,7 @@ class TextNavButton extends StatelessWidget {
         onPressed: () {
           Scrollable.ensureVisible(
             globalKey.currentContext,
-            duration: const Duration(milliseconds: 600),
+            duration: ConstScreen.duration,
             curve: Curves.easeInOut,
           );
         },

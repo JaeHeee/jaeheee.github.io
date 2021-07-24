@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'constants.dart';
 import 'screens/home_page.dart';
@@ -16,14 +15,9 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: () => MaterialApp(
         title: 'JaeHeee.github.io',
-        theme: ThemeData().copyWith(
-          primaryColor: ConstColors.black,
-          scaffoldBackgroundColor: ConstColors.black,
-          textTheme: GoogleFonts.antonTextTheme(Theme.of(context).textTheme)
-              .apply(
-                bodyColor: ConstColors.white,
-              )
-              .copyWith(
+        theme: ThemeData(
+          fontFamily: 'Archivo',
+          textTheme: Theme.of(context).textTheme.copyWith(
                 headline1: const TextStyle(color: ConstColors.white),
                 headline2: const TextStyle(color: ConstColors.white),
                 headline3: const TextStyle(color: ConstColors.white),
@@ -38,6 +32,9 @@ class MyApp extends StatelessWidget {
                 button: const TextStyle(color: ConstColors.white),
                 overline: const TextStyle(color: ConstColors.white),
               ),
+        ).copyWith(
+          primaryColor: ConstColors.black,
+          scaffoldBackgroundColor: ConstColors.black,
         ),
         home: HomePage(),
       ),

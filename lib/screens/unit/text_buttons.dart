@@ -60,8 +60,8 @@ class TextLinkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        textStyle:
-            MaterialStateProperty.all(Theme.of(context).textTheme.bodyText1),
+        textStyle: MaterialStateProperty.all(
+            Theme.of(context).textTheme.button.copyWith(height: 0.5)),
         foregroundColor: MaterialStateProperty.resolveWith(
           (states) {
             if (states.contains(MaterialState.hovered)) {

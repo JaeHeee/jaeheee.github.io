@@ -51,12 +51,15 @@ class ContactContainer extends StatelessWidget {
             children: [
               Text(
                 text.toString(),
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
               ),
               TextLinkButton(
                 text: linkText,
                 onPressed: () => _launchURL(linkUrl),
               ),
+              SizedBox(height: ConstScreen.smallpadding)
             ],
           );
         }));

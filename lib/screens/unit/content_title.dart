@@ -20,13 +20,15 @@ class ContentTitle extends StatelessWidget {
           TextSpan(
             text: '$title\n',
             style: Theme.of(context).textTheme.headline1.copyWith(
-                  height: 1.0,
+                  fontWeight: FontWeight.w900,
+                  height: 0.9,
                   color: color,
                 ),
           ),
           TextSpan(
             text: '$title\n',
             style: Theme.of(context).textTheme.headline1.copyWith(
+                  fontWeight: FontWeight.w900,
                   height: 0.7,
                   foreground: Paint()
                     ..style = PaintingStyle.stroke

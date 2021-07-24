@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
       child: Row(
         children: [
           AnimatedTextKit(
-            totalRepeatCount: 1,
+            totalRepeatCount: 2,
             animatedTexts: [
               TyperAnimatedText('JAEHEE KIM\nMOBILE APPLICATION DEVELOPER')
             ],

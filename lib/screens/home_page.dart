@@ -115,6 +115,7 @@ class _HomePageState extends State<HomePage> {
         ),
         ProjectsContainer(
           key: _globalKeys['PROJECTS'],
+          scrollController: _scrollController,
         ),
         ContactContainer(
           key: _globalKeys['CONTACT'],

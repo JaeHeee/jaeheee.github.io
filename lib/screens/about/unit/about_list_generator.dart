@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -16,25 +18,29 @@ class AboutListGenerator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      height: 100,
-      color: color,
-      padding: EdgeInsets.only(
-        top: ConstScreen.padding,
-        left: ConstScreen.padding,
-        right: ConstScreen.padding,
-        bottom: ConstScreen.largePadding,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          _buildList(context),
-        ],
+    return Transform(
+      transform: Matrix4.translationValues(80, 0, 0)
+        ..setEntry(3, 2, 0.001)
+        ..rotateY(-30 / 180 * pi),
+      alignment: Alignment.centerLeft,
+      child: Container(
+        color: color,
+        padding: EdgeInsets.only(
+          top: ConstScreen.padding,
+          left: ConstScreen.padding,
+          right: ConstScreen.padding,
+          bottom: ConstScreen.largePadding,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            _buildList(context),
+          ],
+        ),
       ),
     );
   }

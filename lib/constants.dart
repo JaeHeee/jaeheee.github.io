@@ -15,9 +15,13 @@ class ConstColors {
 class ConstScreen {
   ConstScreen._();
   static double maxWidth = ScreenUtil().setWidth(1440.0);
+
+  static double boxSize = ScreenUtil().setWidth(120.0);
+
   static double largePadding = ScreenUtil().setWidth(32.0);
   static double padding = ScreenUtil().setWidth(16.0);
   static double smallpadding = ScreenUtil().setWidth(8.0);
   static double extraSmallpadding = ScreenUtil().setWidth(4.0);
+
   static const duration = Duration(milliseconds: 700);
 }

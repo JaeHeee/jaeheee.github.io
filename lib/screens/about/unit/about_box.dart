@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jaeheee_github_io/screens/about/unit/skill_list_generator.dart';
 
 import '../../../constants.dart';
 import '../../../models/about.dart';
 import 'about_list_generator.dart';
+import 'skill_list_generator.dart';
 
 class AboutBox extends StatelessWidget {
   AboutBox({
@@ -37,7 +39,7 @@ class AboutBox extends StatelessWidget {
   Container _buildContents(BuildContext context) {
     return Container(
       width: ScreenUtil().setWidth(100.0),
-      height: ScreenUtil().setWidth(120.0),
+      height: ConstScreen.boxSize,
       child: TabBarView(
         controller: _tabController,
         children: [
@@ -72,51 +74,55 @@ class AboutBox extends StatelessWidget {
             ));
   }
 
-  Container _buildSkill(BuildContext context) {
+  Widget _buildSkill(BuildContext context) {
     final languages = aboutMap['SKILLS']['language'].keys.toList();
     final languageScores = aboutMap['SKILLS']['language'].values.toList();
     final frameWorks = aboutMap['SKILLS']['framework'].keys.toList();
     final frameWorkScores = aboutMap['SKILLS']['framework'].values.toList();
 
-    return Container(
-      width: 100,
-      height: 100,
-      color: ConstColors.navy.withOpacity(0.7),
-      padding: EdgeInsets.only(
-        top: ConstScreen.padding,
-        left: ConstScreen.padding,
-        right: ConstScreen.padding,
-        bottom: ConstScreen.largePadding,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            'SKILLS',
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SkillListGenerator(
-                skills: languages,
-                scores: languageScores,
-              ),
-              SkillListGenerator(
-                skills: frameWorks,
-                scores: frameWorkScores,
-              ),
-            ],
-          )
-        ],
+    return Transform(
+      transform: Matrix4.translationValues(80, 0, 0)
+        ..setEntry(3, 2, 0.001)
+        ..rotateY(-30 / 180 * pi),
+      alignment: Alignment.centerLeft,
+      child: Container(
+        color: ConstColors.navy.withOpacity(0.7),
+        padding: EdgeInsets.only(
+          top: ConstScreen.padding,
+          left: ConstScreen.padding,
+          right: ConstScreen.padding,
+          bottom: ConstScreen.largePadding,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'SKILLS',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SkillListGenerator(
+                  skills: languages,
+                  scores: languageScores,
+                ),
+                SkillListGenerator(
+                  skills: frameWorks,
+                  scores: frameWorkScores,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 
   SizedBox get _buildCircle => SizedBox(
-        width: ScreenUtil().setWidth(120.0),
-        height: ScreenUtil().setWidth(120.0),
+        width: ConstScreen.boxSize,
+        height: ConstScreen.boxSize,
         child: const CircularProgressIndicator(
           backgroundColor: ConstColors.lightBlue,
           strokeWidth: 1,

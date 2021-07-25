@@ -19,7 +19,7 @@ class TextNavButton extends StatelessWidget {
       child: TextButton(
         style: ButtonStyle(
           textStyle:
-              MaterialStateProperty.all(Theme.of(context).textTheme.headline6),
+              MaterialStateProperty.all(Theme.of(context).textTheme.subtitle2),
           foregroundColor: MaterialStateProperty.resolveWith(
             (states) {
               if (states.contains(MaterialState.hovered)) {

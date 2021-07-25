@@ -42,9 +42,16 @@ List<Map<String, String>> extraCurricular = [
   },
 ];
 
-Map<String, List> skills = {
-  'language': ['Dart', 'Python', 'Swift'],
-  'framework': ['Flutter', 'PyTorch'],
+Map<String, Map<String, int>> skills = {
+  'language': {
+    'Dart': 7,
+    'Python': 5,
+    'Swift': 1,
+  },
+  'framework': {
+    'Flutter': 5,
+    'PyTorch': 5,
+  },
 };
 
 Map<String, dynamic> aboutMap = {

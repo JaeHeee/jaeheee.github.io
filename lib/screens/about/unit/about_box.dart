@@ -43,7 +43,7 @@ class AboutBox extends StatelessWidget {
       child: TabBarView(
         controller: _tabController,
         children: [
-          _buildEmptyBox,
+          _buildThisIsBox(context),
           ..._buildAboutList,
           _buildSkill(context),
         ],
@@ -51,10 +51,33 @@ class AboutBox extends StatelessWidget {
     );
   }
 
-  Container get _buildEmptyBox => Container(
+  Container _buildThisIsBox(BuildContext context) => Container(
         width: 100,
         height: 100,
         color: ConstColors.black,
+        child: Center(
+          child: Text.rich(
+            TextSpan(
+              text: 'THIS IS\n',
+              style: Theme.of(context).textTheme.headline1.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+              children: [
+                TextSpan(
+                  text: 'ME',
+                  style: Theme.of(context).textTheme.headline1.copyWith(
+                        fontWeight: FontWeight.w500,
+                        foreground: Paint()
+                          ..style = PaintingStyle.stroke
+                          ..strokeWidth = 4
+                          ..color = ConstColors.navy,
+                      ),
+                )
+              ],
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
       );
 
   List<Widget> get _buildAboutList {

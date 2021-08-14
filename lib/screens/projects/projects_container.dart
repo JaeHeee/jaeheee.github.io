@@ -26,15 +26,21 @@ class ProjectsContainer extends StatelessWidget {
           ),
           Column(
               children: List.generate(
-            3,
-            (index) => Row(
-              children: [
-                Visibility(visible: index % 2 == 1, child: const Spacer()),
-                ProjectAnimatedBuilder(
-                  scrollController: _scrollController,
-                  isEven: index % 2 == 1,
-                ),
-              ],
+            1,
+            (index) => Padding(
+              padding: EdgeInsets.symmetric(vertical: ConstScreen.padding),
+              child: Row(
+                children: [
+                  Visibility(
+                    visible: index % 2 == 1,
+                    child: const Spacer(),
+                  ),
+                  ProjectAnimatedBuilder(
+                    scrollController: _scrollController,
+                    isEven: index % 2 == 1,
+                  ),
+                ],
+              ),
             ),
           )),
         ],

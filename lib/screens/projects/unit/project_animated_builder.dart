@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants.dart';
 
@@ -47,13 +49,68 @@ class ProjectAnimatedBuilder extends StatelessWidget {
       child: Container(
         width: ConstScreen.boxSize,
         height: ConstScreen.boxSize,
-        color: ConstColors.blue.withOpacity(0.5),
-        child: Center(
-            child: Text(
-          'Project',
-          style: Theme.of(context).textTheme.headline1,
-        )),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/images/skinlog.png',
+            ),
+            const SizedBox(
+              width: 20.0,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'SKINLOG',
+                  style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                ),
+                Text('Skin data recording and tracking app',
+                    style: Theme.of(context).textTheme.bodyText1),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Container(
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          _launchURL(
+                              'https://apps.apple.com/kr/app/id1527961587');
+                        },
+                        iconSize: 50,
+                        icon: SvgPicture.asset(
+                          'assets/icons/ios.svg',
+                          width: 50,
+                          color: ConstColors.white.withOpacity(0.9),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          _launchURL(
+                              'https://play.google.com/store/apps/details?id=ai.artlab.candy');
+                        },
+                        iconSize: 50,
+                        icon: SvgPicture.asset(
+                          'assets/icons/android.svg',
+                          width: 50,
+                          color: ConstColors.white.withOpacity(0.9),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
+
+  void _launchURL(url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 }

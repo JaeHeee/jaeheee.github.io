@@ -9,11 +9,13 @@ import '../../../constants.dart';
 class ProjectAnimatedBuilder extends StatelessWidget {
   const ProjectAnimatedBuilder({
     Key key,
+    @required this.projects,
     @required ScrollController scrollController,
     @required this.isEven,
   })  : _scrollController = scrollController,
         super(key: key);
 
+  final Map<String, String> projects;
   final ScrollController _scrollController;
   final bool isEven;
 
@@ -50,10 +52,10 @@ class ProjectAnimatedBuilder extends StatelessWidget {
         width: ConstScreen.boxSize,
         height: ConstScreen.boxSize,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Image.asset(
-              'assets/images/skinlog.png',
+              projects['image'],
             ),
             const SizedBox(
               width: 20.0,
@@ -63,12 +65,12 @@ class ProjectAnimatedBuilder extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  'SKINLOG',
+                  projects['title'],
                   style: Theme.of(context).textTheme.bodyText1.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                 ),
-                Text('Skin data recording and tracking app',
+                Text(projects['description'],
                     style: Theme.of(context).textTheme.bodyText1),
                 const SizedBox(
                   height: 10.0,
@@ -79,7 +81,8 @@ class ProjectAnimatedBuilder extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           _launchURL(
-                              'https://apps.apple.com/kr/app/id1527961587');
+                            projects['appStore'],
+                          );
                         },
                         iconSize: 50,
                         icon: SvgPicture.asset(
@@ -91,7 +94,8 @@ class ProjectAnimatedBuilder extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           _launchURL(
-                              'https://play.google.com/store/apps/details?id=ai.artlab.candy');
+                            projects['playStore'],
+                          );
                         },
                         iconSize: 50,
                         icon: SvgPicture.asset(
@@ -100,6 +104,22 @@ class ProjectAnimatedBuilder extends StatelessWidget {
                           color: ConstColors.white.withOpacity(0.9),
                         ),
                       ),
+                      Visibility(
+                        visible: projects['github'] != '',
+                        child: IconButton(
+                          onPressed: () {
+                            _launchURL(
+                              projects['github'],
+                            );
+                          },
+                          iconSize: 50,
+                          icon: SvgPicture.asset(
+                            'assets/icons/github.svg',
+                            width: 50,
+                            color: ConstColors.white.withOpacity(0.9),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),

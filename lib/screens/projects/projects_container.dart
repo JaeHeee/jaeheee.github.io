@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../../models/projects.dart';
 import '../unit/content_title.dart';
 import 'unit/project_animated_builder.dart';
 
@@ -26,7 +27,7 @@ class ProjectsContainer extends StatelessWidget {
           ),
           Column(
               children: List.generate(
-            1,
+            projects.length,
             (index) => Padding(
               padding: EdgeInsets.symmetric(vertical: ConstScreen.padding),
               child: Row(
@@ -36,6 +37,7 @@ class ProjectsContainer extends StatelessWidget {
                     child: const Spacer(),
                   ),
                   ProjectAnimatedBuilder(
+                    projects: projects[index],
                     scrollController: _scrollController,
                     isEven: index % 2 == 1,
                   ),

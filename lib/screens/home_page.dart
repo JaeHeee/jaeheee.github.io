@@ -79,20 +79,32 @@ class _HomePageState extends State<HomePage> {
   Padding _buildNavigator() {
     return Padding(
       padding: EdgeInsets.all(ConstScreen.padding),
-      child: Row(
-        children: [
-          AnimatedTextKit(
-            totalRepeatCount: 2,
-            animatedTexts: [
-              TyperAnimatedText('JAEHEE KIM\nMOBILE APPLICATION DEVELOPER')
-            ],
-          ),
-          const Spacer(),
-          ..._buildTextNavButtons,
-        ],
-      ),
+      child: ConstScreen.isTabletWidth(context)
+          ? Column(
+              children: [
+                _buildAnimatedText,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [..._buildTextNavButtons],
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                _buildAnimatedText,
+                const Spacer(),
+                ..._buildTextNavButtons,
+              ],
+            ),
     );
   }
+
+  AnimatedTextKit get _buildAnimatedText => AnimatedTextKit(
+        totalRepeatCount: 2,
+        animatedTexts: [
+          TyperAnimatedText('JAEHEE KIM\nMOBILE APPLICATION DEVELOPER')
+        ],
+      );
 
   List<Widget> get _buildTextNavButtons =>
       List.generate(_navigatorList.length, (index) {
@@ -125,7 +137,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Padding get _buildBottomCopyright => Padding(
-        padding: EdgeInsets.symmetric(vertical: ConstScreen.largePadding),
+        padding:
+            EdgeInsets.symmetric(vertical: ConstScreen.largePadding(context)),
         child: const Text(
           'Copyright © 2021 JAEHEE KIM All rights reserved.',
           textAlign: TextAlign.center,

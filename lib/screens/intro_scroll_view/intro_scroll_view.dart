@@ -18,7 +18,8 @@ class IntoScrollView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: ConstScreen.largePadding),
+      padding:
+          EdgeInsets.symmetric(vertical: ConstScreen.largePadding(context)),
       child: Column(
         children: [
           ChildScrollView(

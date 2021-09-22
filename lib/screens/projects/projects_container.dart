@@ -17,7 +17,7 @@ class ProjectsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(ConstScreen.largePadding),
+      padding: EdgeInsets.all(ConstScreen.largePadding(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -33,7 +33,8 @@ class ProjectsContainer extends StatelessWidget {
               child: Row(
                 children: [
                   Visibility(
-                    visible: index % 2 == 1,
+                    visible:
+                        index % 2 == 1 && !ConstScreen.isTabletWidth(context),
                     child: const Spacer(),
                   ),
                   ProjectAnimatedBuilder(

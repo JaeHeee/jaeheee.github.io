@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jaeheee_github_io/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../constants.dart';
 import '../../models/profile.dart';
 import '../unit/content_title.dart';
 import '../unit/text_buttons.dart';
@@ -14,7 +14,8 @@ class ContactContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: ConstScreen.largePadding),
+      padding:
+          EdgeInsets.symmetric(vertical: ConstScreen.largePadding(context)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,

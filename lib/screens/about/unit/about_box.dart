@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../constants.dart';
 import '../../../models/about.dart';
@@ -27,7 +26,7 @@ class AboutBox extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       children: [
         _buildContents(context),
-        _buildCircle,
+        _buildCircle(context),
         _buildClickButton(
           context,
           nextPage,
@@ -38,8 +37,8 @@ class AboutBox extends StatelessWidget {
 
   Container _buildContents(BuildContext context) {
     return Container(
-      width: ScreenUtil().setWidth(100.0),
-      height: ConstScreen.boxSize,
+      width: ConstScreen.boxSize(context),
+      height: ConstScreen.boxSize(context),
       child: TabBarView(
         controller: _tabController,
         children: [
@@ -61,15 +60,22 @@ class AboutBox extends StatelessWidget {
               text: 'THIS IS\n',
               style: Theme.of(context).textTheme.headline1.copyWith(
                     fontWeight: FontWeight.w500,
+                    fontSize: ConstScreen.isTabletWidth(context)
+                        ? Theme.of(context).textTheme.headline2.fontSize
+                        : Theme.of(context).textTheme.headline1.fontSize,
                   ),
               children: [
                 TextSpan(
                   text: 'ME',
                   style: Theme.of(context).textTheme.headline1.copyWith(
                         fontWeight: FontWeight.w500,
+                        fontSize: ConstScreen.isTabletWidth(context)
+                            ? Theme.of(context).textTheme.headline2.fontSize
+                            : Theme.of(context).textTheme.headline1.fontSize,
                         foreground: Paint()
                           ..style = PaintingStyle.stroke
-                          ..strokeWidth = 4
+                          ..strokeWidth =
+                              ConstScreen.isTabletWidth(context) ? 1 : 4
                           ..color = ConstColors.navy,
                       ),
                 )
@@ -98,54 +104,60 @@ class AboutBox extends StatelessWidget {
   }
 
   Widget _buildSkill(BuildContext context) {
+    return ConstScreen.isTabletWidth(context)
+        ? _buildSkillContent(context)
+        : Transform(
+            transform: Matrix4.translationValues(80, 0, 0)
+              ..setEntry(3, 2, 0.001)
+              ..rotateY(-30 / 180 * pi),
+            alignment: Alignment.centerLeft,
+            child: _buildSkillContent(context),
+          );
+  }
+
+  Container _buildSkillContent(BuildContext context) {
     final languages = aboutMap['SKILLS']['language'].keys.toList();
     final languageScores = aboutMap['SKILLS']['language'].values.toList();
     final frameWorks = aboutMap['SKILLS']['framework'].keys.toList();
     final frameWorkScores = aboutMap['SKILLS']['framework'].values.toList();
 
-    return Transform(
-      transform: Matrix4.translationValues(80, 0, 0)
-        ..setEntry(3, 2, 0.001)
-        ..rotateY(-30 / 180 * pi),
-      alignment: Alignment.centerLeft,
-      child: Container(
-        color: ConstColors.navy.withOpacity(0.7),
-        padding: EdgeInsets.only(
-          top: ConstScreen.padding,
-          left: ConstScreen.padding,
-          right: ConstScreen.padding,
-          bottom: ConstScreen.largePadding,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'SKILLS',
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SkillListGenerator(
-                  skills: languages,
-                  scores: languageScores,
-                ),
-                SkillListGenerator(
-                  skills: frameWorks,
-                  scores: frameWorkScores,
-                ),
-              ],
-            )
-          ],
-        ),
+    return Container(
+      color: ConstColors.navy.withOpacity(0.7),
+      padding: EdgeInsets.only(
+        top: ConstScreen.padding,
+        left: ConstScreen.padding,
+        right: ConstScreen.padding,
+        bottom: ConstScreen.largePadding(context),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            'SKILLS',
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SkillListGenerator(
+                skills: languages,
+                scores: languageScores,
+              ),
+              SkillListGenerator(
+                skills: frameWorks,
+                scores: frameWorkScores,
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
 
-  SizedBox get _buildCircle => SizedBox(
-        width: ConstScreen.boxSize,
-        height: ConstScreen.boxSize,
+  SizedBox _buildCircle(BuildContext context) => SizedBox(
+        width: ConstScreen.boxSize(context),
+        height: ConstScreen.boxSize(context),
         child: const CircularProgressIndicator(
           backgroundColor: ConstColors.lightBlue,
           strokeWidth: 1,
@@ -155,7 +167,7 @@ class AboutBox extends StatelessWidget {
 
   Positioned _buildClickButton(BuildContext context, int nextPage) {
     return Positioned(
-      bottom: 100,
+      bottom: ConstScreen.isTabletWidth(context) ? 30 : 100,
       child: TextButton(
         style: ButtonStyle(
           textStyle:

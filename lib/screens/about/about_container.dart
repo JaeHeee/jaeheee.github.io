@@ -33,7 +33,8 @@ class _AboutContainerState extends State<AboutContainer>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: ConstScreen.largePadding),
+      padding:
+          EdgeInsets.symmetric(vertical: ConstScreen.largePadding(context)),
       child: Column(
         children: [
           const ContentTitle(

@@ -15,10 +15,22 @@ class ConstColors {
 class ConstScreen {
   ConstScreen._();
   static double maxWidth = ScreenUtil().setWidth(1440.0);
+  static double tabletWidth = 1100;
 
-  static double boxSize = ScreenUtil().setWidth(120.0);
+  static bool isTabletWidth(BuildContext context) =>
+      MediaQuery.of(context).size.width <= tabletWidth;
 
-  static double largePadding = ScreenUtil().setWidth(32.0);
+  static double boxSize(BuildContext context) => isTabletWidth(context)
+      ? ScreenUtil().setWidth(240.0)
+      : ScreenUtil().setWidth(120.0);
+
+  static double iconSize(BuildContext context) =>
+      isTabletWidth(context) ? 20.0 : 50.0;
+
+  static double largePadding(BuildContext context) => isTabletWidth(context)
+      ? ScreenUtil().setWidth(60.0)
+      : ScreenUtil().setWidth(32.0);
+  static double extralargePadding = ScreenUtil().setWidth(60.0);
   static double padding = ScreenUtil().setWidth(16.0);
   static double smallpadding = ScreenUtil().setWidth(8.0);
   static double extraSmallpadding = ScreenUtil().setWidth(4.0);

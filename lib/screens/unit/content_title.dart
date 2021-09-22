@@ -21,6 +21,9 @@ class ContentTitle extends StatelessWidget {
             text: '$title\n',
             style: Theme.of(context).textTheme.headline1.copyWith(
                   fontWeight: FontWeight.w900,
+                  fontSize: ConstScreen.isTabletWidth(context)
+                      ? Theme.of(context).textTheme.headline2.fontSize
+                      : Theme.of(context).textTheme.headline1.fontSize,
                   height: 0.9,
                   color: color,
                 ),
@@ -29,6 +32,9 @@ class ContentTitle extends StatelessWidget {
             text: '$title\n',
             style: Theme.of(context).textTheme.headline1.copyWith(
                   fontWeight: FontWeight.w900,
+                  fontSize: ConstScreen.isTabletWidth(context)
+                      ? Theme.of(context).textTheme.headline2.fontSize
+                      : Theme.of(context).textTheme.headline1.fontSize,
                   height: 0.7,
                   foreground: Paint()
                     ..style = PaintingStyle.stroke

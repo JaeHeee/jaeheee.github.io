@@ -31,8 +31,8 @@ class ProjectAnimatedBuilder extends StatelessWidget {
     RenderBox renderObject = context.findRenderObject();
     if (renderObject == null || !renderObject.hasSize) {
       return Container(
-        width: ConstScreen.boxSize,
-        height: ConstScreen.boxSize,
+        width: ConstScreen.boxSize(context),
+        height: ConstScreen.boxSize(context),
       );
     }
     final offsetY = renderObject?.localToGlobal(Offset.zero)?.dy ?? 0;
@@ -49,8 +49,8 @@ class ProjectAnimatedBuilder extends StatelessWidget {
         ..rotateY(angle * pi),
       alignment: Alignment.center,
       child: Container(
-        width: ConstScreen.boxSize,
-        height: ConstScreen.boxSize,
+        width: ConstScreen.boxSize(context),
+        height: ConstScreen.boxSize(context),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -67,11 +67,19 @@ class ProjectAnimatedBuilder extends StatelessWidget {
                 Text(
                   projects['title'],
                   style: Theme.of(context).textTheme.bodyText1.copyWith(
-                        fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w700,
+                      fontSize: ConstScreen.isTabletWidth(context)
+                          ? Theme.of(context).textTheme.overline.fontSize
+                          : Theme.of(context).textTheme.bodyText1.fontSize),
+                ),
+                Text(
+                  projects['description'],
+                  style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        fontSize: ConstScreen.isTabletWidth(context)
+                            ? Theme.of(context).textTheme.overline.fontSize
+                            : Theme.of(context).textTheme.bodyText1.fontSize,
                       ),
                 ),
-                Text(projects['description'],
-                    style: Theme.of(context).textTheme.bodyText1),
                 const SizedBox(
                   height: 10.0,
                 ),
@@ -84,10 +92,10 @@ class ProjectAnimatedBuilder extends StatelessWidget {
                             projects['appStore'],
                           );
                         },
-                        iconSize: 50,
+                        iconSize: ConstScreen.iconSize(context),
                         icon: SvgPicture.asset(
                           'assets/icons/ios.svg',
-                          width: 50,
+                          width: ConstScreen.iconSize(context),
                           color: ConstColors.white.withOpacity(0.9),
                         ),
                       ),
@@ -97,10 +105,10 @@ class ProjectAnimatedBuilder extends StatelessWidget {
                             projects['playStore'],
                           );
                         },
-                        iconSize: 50,
+                        iconSize: ConstScreen.iconSize(context),
                         icon: SvgPicture.asset(
                           'assets/icons/android.svg',
-                          width: 50,
+                          width: ConstScreen.iconSize(context),
                           color: ConstColors.white.withOpacity(0.9),
                         ),
                       ),
@@ -112,10 +120,10 @@ class ProjectAnimatedBuilder extends StatelessWidget {
                               projects['github'],
                             );
                           },
-                          iconSize: 50,
+                          iconSize: ConstScreen.iconSize(context),
                           icon: SvgPicture.asset(
                             'assets/icons/github.svg',
-                            width: 50,
+                            width: ConstScreen.iconSize(context),
                             color: ConstColors.white.withOpacity(0.9),
                           ),
                         ),

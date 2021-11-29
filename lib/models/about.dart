@@ -45,12 +45,12 @@ List<Map<String, String>> extraCurricular = [
 Map<String, Map<String, int>> skills = {
   'language': {
     'Dart': 5,
-    'Python': 5,
+    'Python': 3,
     'Swift': 1,
   },
   'framework': {
     'Flutter': 5,
-    'PyTorch': 5,
+    'PyTorch': 3,
   },
 };
 
